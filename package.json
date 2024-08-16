@@ -1,6 +1,7 @@
 {
   "name": "minikani-standalone",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -8,6 +9,7 @@
     "db:drop": "drizzle-kit drop",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:seed": "ts-node --esm ./src/drizzle/seed.ts",
     "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start"

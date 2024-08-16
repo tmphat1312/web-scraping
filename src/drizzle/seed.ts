@@ -1,7 +1,7 @@
 import ora from 'ora';
 
 import { db } from './client';
-import { levels } from './schema';
+import { levels, voice_actors } from './schema';
 
 const SEEDING_DATA = {
   levels: [
@@ -4827,7 +4827,17 @@ const SEEDING_DATA = {
 
 async function seedLevels() {
   try {
+    await db.delete(levels);
     await db.insert(levels).values(SEEDING_DATA.levels);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function seedVoiceActors() {
+  try {
+    await db.delete(voice_actors);
+    await db.insert(voice_actors).values(SEEDING_DATA.voice_actors);
   } catch (error) {
     console.error(error);
   }
@@ -4837,6 +4847,9 @@ export async function seed() {
   const spinner = ora('Seeding data').start();
 
   await seedLevels();
+  await seedVoiceActors();
 
   spinner.succeed('Seed completed');
 }
+
+seed();
