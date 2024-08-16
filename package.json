@@ -3,24 +3,39 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "db:clean": "rimraf ./src/drizzle/migrations ./src/drizzle/bin/*.sqlite",
+    "db:drop": "drizzle-kit drop",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "dev": "next dev --turbo",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
+    "better-sqlite3": "^11.1.2",
+    "drizzle-orm": "^0.33.0",
+    "next": "14.2.5",
+    "ora": "^8.0.1",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.5"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/better-sqlite3": "^7.6.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "drizzle-kit": "^0.24.0",
     "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-pkg": "^0.18.1",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
   }
 }
