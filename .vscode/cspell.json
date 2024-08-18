@@ -6,14 +6,14 @@
   "language": "en",
   // words - list of words to be always considered correct
   "words": [
-    "minikani",
-    "tailwindcss",
     "Kenichi",
     "kunyomi",
     "Kyoko",
     "minikani",
     "nanori",
     "onyomi",
+    "tailwindcss",
+    "trivago",
     "voca"
   ],
   // flagWords - list of words to be always considered incorrect
