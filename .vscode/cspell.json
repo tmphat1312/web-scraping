@@ -6,6 +6,7 @@
   "language": "en",
   // words - list of words to be always considered correct
   "words": [
+    "Kani",
     "Kenichi",
     "kunyomi",
     "Kyoko",
@@ -14,7 +15,8 @@
     "onyomi",
     "tailwindcss",
     "trivago",
-    "voca"
+    "voca",
+    "Wani"
   ],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.
