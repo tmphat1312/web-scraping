@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "db:clean": "rimraf ./src/drizzle/migrations ./src/bin/*.sqlite",
+    "db:clean": "rimraf ./src/bin/*.sqlite",
     "db:drop": "drizzle-kit drop",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
@@ -18,10 +18,10 @@
   "dependencies": {
     "better-sqlite3": "^11.1.2",
     "cheerio": "^1.0.0",
-    "commander": "^12.1.0",
     "drizzle-orm": "^0.33.0",
     "next": "14.2.5",
     "ora": "^8.0.1",
+    "puppeteer": "^23.1.1",
     "react": "^18",
     "react-dom": "^18"
   },

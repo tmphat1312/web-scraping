@@ -1,4 +1,4 @@
-import { InferInsertModel } from 'drizzle-orm';
+import { InferInsertModel, eq } from 'drizzle-orm';
 
 import { db } from '../client';
 import { radicals } from '../schemas/radicals';
@@ -17,4 +17,13 @@ export async function insertRadicals(data: Radical[]) {
 
 export async function truncateRadicals() {
   return db.delete(radicals);
+}
+
+export async function updateRadicalCharacterInSVG(id: number, SVGPath: string) {
+  return db
+    .update(radicals)
+    .set({
+      character: SVGPath,
+    })
+    .where(eq(radicals.id, id));
 }

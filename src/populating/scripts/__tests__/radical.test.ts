@@ -1,4 +1,4 @@
-import { scrapeRadical, scrapeRadicalFoundInKanji } from './radical';
+import { scrapeRadical, scrapeRadicalFoundInKanji } from '../radical';
 
 describe('scrape radicals', () => {
   it('should be the same radical', async () => {

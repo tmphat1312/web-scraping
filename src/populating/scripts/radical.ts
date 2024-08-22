@@ -1,6 +1,5 @@
 import { fromURL } from 'cheerio';
 
-// TODO: deal with some radicals without a character in text format (svg or image)
 export async function scrapeRadical(slug: string) {
   let $ = await fromURL(`https://www.wanikani.com/radicals/${slug}`);
   return $.extract({
