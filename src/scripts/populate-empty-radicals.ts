@@ -5,9 +5,7 @@ import { wait } from '@/utils/wait';
 import { writeFile } from 'fs/promises';
 import ora from 'ora';
 
-function slugify(text: string) {
-  return text.toLowerCase().replace(/\s+/g, '-');
-}
+import { slugify } from '../utils/slugify';
 
 (async function populate() {
   let emptyRadicals = await getEmptyRadical();
