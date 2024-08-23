@@ -1,4 +1,4 @@
-import { InferSelectModel, eq, isNull } from 'drizzle-orm';
+import { InferSelectModel, eq } from 'drizzle-orm';
 
 import { db } from '../client';
 import { radicals } from '../schemas/radicals';
