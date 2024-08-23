@@ -6,7 +6,7 @@ import { wait } from '@/utils/wait';
 import ora from 'ora';
 
 (async function populate() {
-  const fromLevel = 31;
+  const fromLevel = 1;
   const toLevel = 60;
 
   for (let level = fromLevel; level <= toLevel; level++) {
