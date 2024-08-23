@@ -1,6 +1,6 @@
 import { updateRadicalCharacterInSVG } from '@/drizzle/mutations/radicals';
 import { getEmptyRadical } from '@/drizzle/queries/radicals';
-import { scrapeRadicalCharacterInSVG } from '@/populating/scripts/empty-radical';
+import { scrapeRadicalCharacterInSVG } from '@/populating/scripts/radical';
 import { wait } from '@/utils/wait';
 import { writeFile } from 'fs/promises';
 import ora from 'ora';

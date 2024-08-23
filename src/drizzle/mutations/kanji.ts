@@ -1,4 +1,4 @@
-import { InferInsertModel } from 'drizzle-orm';
+import { InferInsertModel, inArray } from 'drizzle-orm';
 
 import { db } from '../client';
 import { kanji } from '../schemas/kanji';
@@ -17,4 +17,11 @@ export async function insertKanji(data: Kanji[]) {
 
 export async function truncateKanji() {
   return db.delete(kanji);
+}
+
+export async function getMultipleKanjiByCharacter(characters: string[]) {
+  return db
+    .select({ id: kanji.id })
+    .from(kanji)
+    .where(inArray(kanji.character, characters));
 }

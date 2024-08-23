@@ -27,3 +27,10 @@ export async function updateRadicalCharacterInSVG(id: number, SVGPath: string) {
     })
     .where(eq(radicals.id, id));
 }
+
+export async function getRadicalByName(name: string) {
+  return db
+    .select({ id: radicals.id })
+    .from(radicals)
+    .where(eq(radicals.primary_meaning, name));
+}

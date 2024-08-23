@@ -18,12 +18,12 @@ import ora from 'ora';
 
     for (let slug of slugs) {
       let decodedSlug = decodeURIComponent(slug);
-      spinner.start(`Scraping ${decodedSlug}...`);
+      spinner.start(`Populating ${decodedSlug}...`);
       let kanji = await scrapeKanji(slug);
       data.push(kanjiAdapter(kanji));
 
       await wait(225);
-      spinner.succeed(`Scraped ${decodedSlug}`);
+      spinner.succeed(`Populated ${decodedSlug}`);
     }
 
     if (data.length > 0) {
