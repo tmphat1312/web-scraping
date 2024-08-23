@@ -1,4 +1,5 @@
 import { fromURL } from 'cheerio';
+import puppeteer from 'puppeteer';
 
 export async function scrapeRadical(slug: string) {
   let $ = await fromURL(`https://www.wanikani.com/radicals/${slug}`);
@@ -22,7 +23,20 @@ export async function scrapeRadical(slug: string) {
 export async function scrapeRadicalFoundInKanji(slug: string) {
   let $ = await fromURL(`https://www.wanikani.com/radicals/${slug}`);
   return $.extract({
-    radical_name: `[class$="icon--radical"]`,
+    radical_name: `.page-header__title-text`,
     found_in_kanji: ['.subject-character__characters'],
   });
+}
+
+export async function scrapeRadicalCharacterInSVG(slug: string) {
+  let browser = await puppeteer.launch();
+  let page = await browser.newPage();
+  await page.goto(`https://www.wanikani.com/radicals/${slug}`);
+  await page.waitForNetworkIdle();
+  let svg = await page.evaluate(
+    () => document.querySelector('.radical-image')?.shadowRoot?.innerHTML,
+  );
+  await page.close();
+  await browser.close();
+  return svg;
 }
