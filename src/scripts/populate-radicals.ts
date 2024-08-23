@@ -17,12 +17,12 @@ import ora from 'ora';
     let data: Radical[] = [];
 
     for (let slug of slugs) {
-      spinner.start(`Scraping ${slug}...`);
+      spinner.start(`Populating ${slug}...`);
       let radical = await scrapeRadical(slug);
       data.push(radicalAdapter(radical));
 
       await wait(200);
-      spinner.succeed(`Scraped ${slug}`);
+      spinner.succeed(`Populated ${slug}`);
     }
 
     if (data.length > 0) {
