@@ -1,0 +1,740 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "31438d67-138d-4ad8-86d4-7ecaa7488f9c",
+  "prevId": "8ec4922e-a052-4445-8acc-a45680efed04",
+  "tables": {
+    "context_pattern_sentences": {
+      "name": "context_pattern_sentences",
+      "columns": {
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "pattern_number": {
+          "name": "pattern_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "pattern_sentence_number": {
+          "name": "pattern_sentence_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "jp_sentence": {
+          "name": "jp_sentence",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "en_sentence": {
+          "name": "en_sentence",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "context_pattern_sentences_vocabulary_id_vocabulary_id_fk": {
+          "name": "context_pattern_sentences_vocabulary_id_vocabulary_id_fk",
+          "tableFrom": "context_pattern_sentences",
+          "tableTo": "vocabulary",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "context_pattern_sentences_pattern_number_context_patterns_pattern_number_fk": {
+          "name": "context_pattern_sentences_pattern_number_context_patterns_pattern_number_fk",
+          "tableFrom": "context_pattern_sentences",
+          "tableTo": "context_patterns",
+          "columnsFrom": [
+            "pattern_number"
+          ],
+          "columnsTo": [
+            "pattern_number"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "context_pattern_sentences_vocabulary_id_pattern_number_pattern_sentence_number_pk": {
+          "columns": [
+            "vocabulary_id",
+            "pattern_number",
+            "pattern_sentence_number"
+          ],
+          "name": "context_pattern_sentences_vocabulary_id_pattern_number_pattern_sentence_number_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "context_patterns": {
+      "name": "context_patterns",
+      "columns": {
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "pattern_number": {
+          "name": "pattern_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pattern": {
+          "name": "pattern",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "context_patterns_vocabulary_id_vocabulary_id_fk": {
+          "name": "context_patterns_vocabulary_id_vocabulary_id_fk",
+          "tableFrom": "context_patterns",
+          "tableTo": "vocabulary",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "context_patterns_vocabulary_id_pattern_number_pk": {
+          "columns": [
+            "vocabulary_id",
+            "pattern_number"
+          ],
+          "name": "context_patterns_vocabulary_id_pattern_number_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "kanji_radical_compositions": {
+      "name": "kanji_radical_compositions",
+      "columns": {
+        "kanji_id": {
+          "name": "kanji_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "radical_id": {
+          "name": "radical_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "kanji_radical_compositions_kanji_id_kanji_id_fk": {
+          "name": "kanji_radical_compositions_kanji_id_kanji_id_fk",
+          "tableFrom": "kanji_radical_compositions",
+          "tableTo": "kanji",
+          "columnsFrom": [
+            "kanji_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "kanji_radical_compositions_radical_id_radicals_id_fk": {
+          "name": "kanji_radical_compositions_radical_id_radicals_id_fk",
+          "tableFrom": "kanji_radical_compositions",
+          "tableTo": "radicals",
+          "columnsFrom": [
+            "radical_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "kanji_radical_compositions_kanji_id_radical_id_pk": {
+          "columns": [
+            "kanji_id",
+            "radical_id"
+          ],
+          "name": "kanji_radical_compositions_kanji_id_radical_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "kanji": {
+      "name": "kanji",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "level": {
+          "name": "level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "character": {
+          "name": "character",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "primary_meaning": {
+          "name": "primary_meaning",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "alternative_meanings": {
+          "name": "alternative_meanings",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "meaning_mnemonic": {
+          "name": "meaning_mnemonic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "meaning_hints": {
+          "name": "meaning_hints",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kunyomi_reading": {
+          "name": "kunyomi_reading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "onyomi_reading": {
+          "name": "onyomi_reading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "nanori_reading": {
+          "name": "nanori_reading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "reading_mnemonic": {
+          "name": "reading_mnemonic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reading_hints": {
+          "name": "reading_hints",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "kanji_character_unique": {
+          "name": "kanji_character_unique",
+          "columns": [
+            "character"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "levels": {
+      "name": "levels",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "jp_name": {
+          "name": "jp_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "en_name": {
+          "name": "en_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "min_value": {
+          "name": "min_value",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "max_value": {
+          "name": "max_value",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "levels_jp_name_unique": {
+          "name": "levels_jp_name_unique",
+          "columns": [
+            "jp_name"
+          ],
+          "isUnique": true
+        },
+        "levels_en_name_unique": {
+          "name": "levels_en_name_unique",
+          "columns": [
+            "en_name"
+          ],
+          "isUnique": true
+        },
+        "levels_min_value_unique": {
+          "name": "levels_min_value_unique",
+          "columns": [
+            "min_value"
+          ],
+          "isUnique": true
+        },
+        "levels_max_value_unique": {
+          "name": "levels_max_value_unique",
+          "columns": [
+            "max_value"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "radicals": {
+      "name": "radicals",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "level": {
+          "name": "level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "character": {
+          "name": "character",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "primary_meaning": {
+          "name": "primary_meaning",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "alternative_meanings": {
+          "name": "alternative_meanings",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "mnemonic": {
+          "name": "mnemonic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "radicals_primary_meaning_unique": {
+          "name": "radicals_primary_meaning_unique",
+          "columns": [
+            "primary_meaning"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "visually_similar_kanji": {
+      "name": "visually_similar_kanji",
+      "columns": {
+        "kanji_src_id": {
+          "name": "kanji_src_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kanji_dst_id": {
+          "name": "kanji_dst_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "visually_similar_kanji_kanji_src_id_kanji_id_fk": {
+          "name": "visually_similar_kanji_kanji_src_id_kanji_id_fk",
+          "tableFrom": "visually_similar_kanji",
+          "tableTo": "kanji",
+          "columnsFrom": [
+            "kanji_src_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "visually_similar_kanji_kanji_dst_id_kanji_id_fk": {
+          "name": "visually_similar_kanji_kanji_dst_id_kanji_id_fk",
+          "tableFrom": "visually_similar_kanji",
+          "tableTo": "kanji",
+          "columnsFrom": [
+            "kanji_dst_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "visually_similar_kanji_kanji_src_id_kanji_dst_id_pk": {
+          "columns": [
+            "kanji_src_id",
+            "kanji_dst_id"
+          ],
+          "name": "visually_similar_kanji_kanji_src_id_kanji_dst_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "vocabulary_kanji_compositions": {
+      "name": "vocabulary_kanji_compositions",
+      "columns": {
+        "kanji_id": {
+          "name": "kanji_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "vocabulary_kanji_compositions_kanji_id_kanji_id_fk": {
+          "name": "vocabulary_kanji_compositions_kanji_id_kanji_id_fk",
+          "tableFrom": "vocabulary_kanji_compositions",
+          "tableTo": "kanji",
+          "columnsFrom": [
+            "kanji_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "vocabulary_kanji_compositions_vocabulary_id_vocabulary_id_fk": {
+          "name": "vocabulary_kanji_compositions_vocabulary_id_vocabulary_id_fk",
+          "tableFrom": "vocabulary_kanji_compositions",
+          "tableTo": "vocabulary",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "vocabulary_kanji_compositions_kanji_id_vocabulary_id_pk": {
+          "columns": [
+            "kanji_id",
+            "vocabulary_id"
+          ],
+          "name": "vocabulary_kanji_compositions_kanji_id_vocabulary_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "vocabulary_readings": {
+      "name": "vocabulary_readings",
+      "columns": {
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "reading_number": {
+          "name": "reading_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reading": {
+          "name": "reading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "actor_id": {
+          "name": "actor_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "source_url": {
+          "name": "source_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "vocabulary_readings_vocabulary_id_vocabulary_id_fk": {
+          "name": "vocabulary_readings_vocabulary_id_vocabulary_id_fk",
+          "tableFrom": "vocabulary_readings",
+          "tableTo": "vocabulary",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "vocabulary_readings_actor_id_voice_actors_id_fk": {
+          "name": "vocabulary_readings_actor_id_voice_actors_id_fk",
+          "tableFrom": "vocabulary_readings",
+          "tableTo": "voice_actors",
+          "columnsFrom": [
+            "actor_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "vocabulary_readings_vocabulary_id_reading_number_pk": {
+          "columns": [
+            "vocabulary_id",
+            "reading_number"
+          ],
+          "name": "vocabulary_readings_vocabulary_id_reading_number_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "vocabulary": {
+      "name": "vocabulary",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "level": {
+          "name": "level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "character": {
+          "name": "character",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "primary_meaning": {
+          "name": "primary_meaning",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "alternative_meanings": {
+          "name": "alternative_meanings",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "word_types": {
+          "name": "word_types",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "meaning_explanation": {
+          "name": "meaning_explanation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reading_explanation": {
+          "name": "reading_explanation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "voice_actors": {
+      "name": "voice_actors",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "voice_actors_name_unique": {
+          "name": "voice_actors_name_unique",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {
+      "\"vocabulary_readings\".\"sources\"": "\"vocabulary_readings\".\"source_url\""
+    }
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

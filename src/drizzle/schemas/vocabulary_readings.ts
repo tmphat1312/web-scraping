@@ -15,7 +15,7 @@ export const vocabulary_readings = sqliteTable(
     reading_number: integer('reading_number').notNull(),
     reading: text('reading').notNull(),
     actor_id: integer('actor_id').references(() => voice_actors.id),
-    sources: text('sources').notNull(),
+    source_url: text('source_url').notNull(),
   },
   (table) => ({
     pk: primaryKey({ columns: [table.vocabulary_id, table.reading_number] }),

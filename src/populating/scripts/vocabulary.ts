@@ -54,7 +54,7 @@ export async function scrapeVocabularyReadings(slug: string) {
               {
                 selector: `li`,
                 value: {
-                  sources: {
+                  source: {
                     selector: `source`,
                     value: (el) => $(el).attr('src'),
                   },
