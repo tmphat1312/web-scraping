@@ -2,7 +2,7 @@ import {
   scrapeKanji,
   scrapeKanjiFoundInVocabulary,
   scrapeVisuallyKanji,
-} from '../populating/scripts/kanji';
+} from '../src/scraping/kanji';
 
 describe('scrape kanji', () => {
   it('should be the same kanji', async () => {

@@ -1,7 +1,7 @@
 import {
   scrapeRadical,
   scrapeRadicalFoundInKanji,
-} from '../populating/scripts/radical';
+} from '../src/scraping/radical';
 
 describe('scrape radicals', () => {
   it('should be the same radical', async () => {

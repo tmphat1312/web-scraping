@@ -1,4 +1,4 @@
-import { scrapeLevels } from '../populating/scripts/levels';
+import { scrapeLevels } from '../src/scraping/levels';
 
 describe('scrape levels', () => {
   it('should be the same levels', async () => {

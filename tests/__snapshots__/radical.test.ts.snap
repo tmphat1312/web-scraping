@@ -87,6 +87,6 @@ exports[`scrape radicals > should be the same radical found in kanji 1`] = `
     "曹",
     "寡",
   ],
-  "radical_name": "一",
+  "radical_name": "Ground",
 }
 `;

@@ -1,4 +1,4 @@
-import { scrapeVoiceActors } from '../populating/scripts/voice-actors';
+import { scrapeVoiceActors } from '../src/scraping/voice-actors';
 
 describe('scrape voiceActors', () => {
   it('should be the same voiceActors', async () => {
