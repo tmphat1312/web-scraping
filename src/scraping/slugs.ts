@@ -1,7 +1,5 @@
 import { fromURL } from 'cheerio';
 
-// scrapeSlugs('radicals').then(console.log);
-
 export async function scrapeSlugs(
   level: number,
   type: 'kanji' | 'radicals' | 'vocabulary',
