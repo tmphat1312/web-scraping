@@ -1,52 +1,51 @@
-import { getMultipleKanjiByCharacter } from '@/data/mutations/kanji';
 import {
-  KanjiRadicalComposition,
-  insertKanjiRadicalCompositions,
-} from '@/data/mutations/kanji-radical-compositions';
-import { getRadicalByName } from '@/data/mutations/radicals';
-import { scrapeRadicalFoundInKanji } from '@/scraping/radical';
+  VocabularyKanjiComposition,
+  insertVocabularyKanjiCompositions,
+} from '@/data/mutations/vocabulary-kanji-compositions';
+import { getKanjiByCharacter } from '@/data/queries/kanji';
+import { getMultipleVocabularyByCharacter } from '@/data/queries/vocabulary';
+import { scrapeKanjiFoundInVocabulary } from '@/scraping/kanji';
 import { scrapeSlugs } from '@/scraping/slugs';
 import { wait } from '@/utils/wait';
 import ora from 'ora';
 
 (async function populate() {
   const fromLevel = 1;
-  const toLevel = 1;
+  const toLevel = 60;
 
   for (let level = fromLevel; level <= toLevel; level++) {
     console.log(`== Level ${level} ==`);
 
     let spinner = ora();
     let slugs = await scrapeSlugs(level, 'kanji');
-    let data: KanjiRadicalComposition[] = [];
+    let data: VocabularyKanjiComposition[] = [];
 
     for (let slug of slugs) {
-      spinner.start(`Populating ${slug} found in kanji...`);
-      let foundInKanji = await scrapeRadicalFoundInKanji(slug);
+      spinner.start(`Populating ${decodeURI(slug)} found in vocabulary...`);
+      let foundInVocabulary = await scrapeKanjiFoundInVocabulary(slug);
 
-      if (foundInKanji.found_in_kanji.length == 0) continue;
-      if (!foundInKanji.radical_name) {
-        console.log(`Radical ${slug} does not have a name!`);
+      if (foundInVocabulary.vocabulary.length == 0) continue;
+      if (!foundInVocabulary.kanji) {
+        console.log(`Radical ${decodeURI(slug)} does not have a name!`);
         continue;
       }
 
-      let [[radical], kanji] = await Promise.all([
-        getRadicalByName(foundInKanji.radical_name),
-        getMultipleKanjiByCharacter(foundInKanji.found_in_kanji),
+      let [[kanji], vocabulary] = await Promise.all([
+        getKanjiByCharacter(foundInVocabulary.kanji),
+        getMultipleVocabularyByCharacter(foundInVocabulary.vocabulary),
       ]);
 
-      let radicalCompositions = kanji.map((k) => ({
-        radical_id: radical.id,
-        kanji_id: k.id,
+      let kanjiCompositions = vocabulary.map((v) => ({
+        kanji_id: kanji.id,
+        vocabulary_id: v.id,
       }));
-      data = data.concat(radicalCompositions);
-
-      spinner.succeed(`Populated ${slug} found in kanji`);
+      data = data.concat(kanjiCompositions);
+      spinner.succeed(`Populated ${decodeURI(slug)} found in vocabulary`);
       await wait(210);
     }
 
     if (data.length > 0) {
-      await insertKanjiRadicalCompositions(data);
+      await insertVocabularyKanjiCompositions(data);
       data = [];
     }
   }
