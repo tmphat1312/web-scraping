@@ -1,5 +1,5 @@
 import { insertVoiceActors } from '@/drizzle/mutations/voice-actors';
-import { scrapeVoiceActors } from '@/populating/scripts/voice-actors';
+import { scrapeVoiceActors } from '@/scraping/voice-actors';
 import ora from 'ora';
 
 (async function populate() {

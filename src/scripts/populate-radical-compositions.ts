@@ -4,8 +4,8 @@ import {
   insertKanjiRadicalCompositions,
 } from '@/drizzle/mutations/kanji-radical-compositions';
 import { getRadicalByName } from '@/drizzle/mutations/radicals';
-import { scrapeRadicalFoundInKanji } from '@/populating/scripts/radical';
-import { scrapeSlugs } from '@/populating/scripts/slugs';
+import { scrapeRadicalFoundInKanji } from '@/scraping/radical';
+import { scrapeSlugs } from '@/scraping/slugs';
 import { wait } from '@/utils/wait';
 import ora from 'ora';
 

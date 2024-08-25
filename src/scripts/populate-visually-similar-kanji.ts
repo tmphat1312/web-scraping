@@ -3,8 +3,8 @@ import {
   VisuallySimilarKanji,
   insertVisuallySimilarKanji,
 } from '@/drizzle/mutations/visually-similar-kanji';
-import { scrapeVisuallyKanji } from '@/populating/scripts/kanji';
-import { scrapeSlugs } from '@/populating/scripts/slugs';
+import { scrapeVisuallyKanji } from '@/scraping/kanji';
+import { scrapeSlugs } from '@/scraping/slugs';
 import { wait } from '@/utils/wait';
 import ora from 'ora';
 

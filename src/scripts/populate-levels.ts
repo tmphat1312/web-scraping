@@ -1,5 +1,5 @@
 import { insertLevels } from '@/drizzle/mutations/levels';
-import { scrapeLevels } from '@/populating/scripts/levels';
+import { scrapeLevels } from '@/scraping/levels';
 import ora from 'ora';
 
 (async function populate() {

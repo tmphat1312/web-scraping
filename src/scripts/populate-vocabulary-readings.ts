@@ -4,8 +4,8 @@ import {
 } from '@/drizzle/mutations/vocabulary-readings';
 import { getVocabularyByCharacter } from '@/drizzle/queries/vocabulary';
 import { getVoiceActors } from '@/drizzle/queries/voice-actors';
-import { scrapeSlugs } from '@/populating/scripts/slugs';
-import { scrapeVocabularyReadings } from '@/populating/scripts/vocabulary';
+import { scrapeSlugs } from '@/scraping/slugs';
+import { scrapeVocabularyReadings } from '@/scraping/vocabulary';
 import { wait } from '@/utils/wait';
 import ora from 'ora';
 

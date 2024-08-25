@@ -1,9 +1,9 @@
 import { Kanji } from '@/drizzle/mutations/kanji';
 import { Radical } from '@/drizzle/mutations/radicals';
 import { Vocabulary } from '@/drizzle/mutations/vocabulary';
-import { scrapeKanji } from '@/populating/scripts/kanji';
-import { scrapeRadical } from '@/populating/scripts/radical';
-import { scrapeVocabulary } from '@/populating/scripts/vocabulary';
+import { scrapeKanji } from '@/scraping/kanji';
+import { scrapeRadical } from '@/scraping/radical';
+import { scrapeVocabulary } from '@/scraping/vocabulary';
 
 export function vocabularyAdapter(
   scrapedData: Awaited<ReturnType<typeof scrapeVocabulary>>,
