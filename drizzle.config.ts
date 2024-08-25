@@ -6,7 +6,7 @@ export default defineConfig({
     url: './src/bin/db.sqlite',
   },
   schema: './src/drizzle/schemas/*.ts',
-  out: './src/migrations',
+  out: './migrations',
   verbose: true,
   strict: true,
 });
