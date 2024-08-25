@@ -1,8 +1,8 @@
-import { getMultipleKanjiByCharacter } from '@/drizzle/mutations/kanji';
+import { getMultipleKanjiByCharacter } from '@/data/mutations/kanji';
 import {
   VisuallySimilarKanji,
   insertVisuallySimilarKanji,
-} from '@/drizzle/mutations/visually-similar-kanji';
+} from '@/data/mutations/visually-similar-kanji';
 import { scrapeVisuallyKanji } from '@/scraping/kanji';
 import { scrapeSlugs } from '@/scraping/slugs';
 import { wait } from '@/utils/wait';

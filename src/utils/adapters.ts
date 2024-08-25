@@ -1,6 +1,6 @@
-import { Kanji } from '@/drizzle/mutations/kanji';
-import { Radical } from '@/drizzle/mutations/radicals';
-import { Vocabulary } from '@/drizzle/mutations/vocabulary';
+import { Kanji } from '@/data/mutations/kanji';
+import { Radical } from '@/data/mutations/radicals';
+import { Vocabulary } from '@/data/mutations/vocabulary';
 import { scrapeKanji } from '@/scraping/kanji';
 import { scrapeRadical } from '@/scraping/radical';
 import { scrapeVocabulary } from '@/scraping/vocabulary';

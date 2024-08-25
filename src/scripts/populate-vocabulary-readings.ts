@@ -1,9 +1,9 @@
 import {
   VocabularyReading,
   insertVocabularyReadings,
-} from '@/drizzle/mutations/vocabulary-readings';
-import { getVocabularyByCharacter } from '@/drizzle/queries/vocabulary';
-import { getVoiceActors } from '@/drizzle/queries/voice-actors';
+} from '@/data/mutations/vocabulary-readings';
+import { getVocabularyByCharacter } from '@/data/queries/vocabulary';
+import { getVoiceActors } from '@/data/queries/voice-actors';
 import { scrapeSlugs } from '@/scraping/slugs';
 import { scrapeVocabularyReadings } from '@/scraping/vocabulary';
 import { wait } from '@/utils/wait';

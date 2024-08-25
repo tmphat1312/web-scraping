@@ -1,9 +1,9 @@
-import { getMultipleKanjiByCharacter } from '@/drizzle/mutations/kanji';
+import { getMultipleKanjiByCharacter } from '@/data/mutations/kanji';
 import {
   KanjiRadicalComposition,
   insertKanjiRadicalCompositions,
-} from '@/drizzle/mutations/kanji-radical-compositions';
-import { getRadicalByName } from '@/drizzle/mutations/radicals';
+} from '@/data/mutations/kanji-radical-compositions';
+import { getRadicalByName } from '@/data/mutations/radicals';
 import { scrapeRadicalFoundInKanji } from '@/scraping/radical';
 import { scrapeSlugs } from '@/scraping/slugs';
 import { wait } from '@/utils/wait';

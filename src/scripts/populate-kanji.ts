@@ -1,4 +1,4 @@
-import { Kanji, insertKanji } from '@/drizzle/mutations/kanji';
+import { Kanji, insertKanji } from '@/data/mutations/kanji';
 import { scrapeKanji } from '@/scraping/kanji';
 import { scrapeSlugs } from '@/scraping/slugs';
 import { kanjiAdapter } from '@/utils/adapters';

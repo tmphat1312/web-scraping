@@ -1,4 +1,4 @@
-import { insertLevels } from '@/drizzle/mutations/levels';
+import { insertLevels } from '@/data/mutations/levels';
 import { scrapeLevels } from '@/scraping/levels';
 import ora from 'ora';
 

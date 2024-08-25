@@ -1,4 +1,4 @@
-import { insertVoiceActors } from '@/drizzle/mutations/voice-actors';
+import { insertVoiceActors } from '@/data/mutations/voice-actors';
 import { scrapeVoiceActors } from '@/scraping/voice-actors';
 import ora from 'ora';
 

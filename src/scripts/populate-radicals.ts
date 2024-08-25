@@ -2,8 +2,8 @@ import {
   Radical,
   insertRadicals,
   updateRadicalCharacterInSVG,
-} from '@/drizzle/mutations/radicals';
-import { getEmptyRadical } from '@/drizzle/queries/radicals';
+} from '@/data/mutations/radicals';
+import { getEmptyRadical } from '@/data/queries/radicals';
 import { scrapeRadical, scrapeRadicalCharacterInSVG } from '@/scraping/radical';
 import { scrapeSlugs } from '@/scraping/slugs';
 import { radicalAdapter } from '@/utils/adapters';

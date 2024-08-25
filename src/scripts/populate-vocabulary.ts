@@ -1,4 +1,4 @@
-import { Vocabulary, insertVocabulary } from '@/drizzle/mutations/vocabulary';
+import { Vocabulary, insertVocabulary } from '@/data/mutations/vocabulary';
 import { scrapeSlugs } from '@/scraping/slugs';
 import { scrapeVocabulary } from '@/scraping/vocabulary';
 import { vocabularyAdapter } from '@/utils/adapters';
