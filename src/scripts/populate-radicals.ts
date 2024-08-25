@@ -4,12 +4,12 @@ import {
   updateRadicalCharacterInSVG,
 } from '@/drizzle/mutations/radicals';
 import { getEmptyRadical } from '@/drizzle/queries/radicals';
-import { radicalAdapter } from '@/populating/adapters/radical-adapter';
 import {
   scrapeRadical,
   scrapeRadicalCharacterInSVG,
 } from '@/populating/scripts/radical';
 import { scrapeSlugs } from '@/populating/scripts/slugs';
+import { radicalAdapter } from '@/utils/adapters';
 import { slugify } from '@/utils/slugify';
 import { wait } from '@/utils/wait';
 import { writeFile } from 'fs/promises';

@@ -1,7 +1,7 @@
 import { Vocabulary, insertVocabulary } from '@/drizzle/mutations/vocabulary';
-import { vocabularyAdapter } from '@/populating/adapters/vocabulary-adapter';
 import { scrapeSlugs } from '@/populating/scripts/slugs';
 import { scrapeVocabulary } from '@/populating/scripts/vocabulary';
+import { vocabularyAdapter } from '@/utils/adapters';
 import { wait } from '@/utils/wait';
 import ora from 'ora';
 

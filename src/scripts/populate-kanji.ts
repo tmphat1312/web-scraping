@@ -1,7 +1,7 @@
 import { Kanji, insertKanji } from '@/drizzle/mutations/kanji';
-import { kanjiAdapter } from '@/populating/adapters/kanji-adapter';
 import { scrapeKanji } from '@/populating/scripts/kanji';
 import { scrapeSlugs } from '@/populating/scripts/slugs';
+import { kanjiAdapter } from '@/utils/adapters';
 import { wait } from '@/utils/wait';
 import ora from 'ora';
 
