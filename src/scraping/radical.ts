@@ -9,22 +9,14 @@ export async function scrapeRadical(slug: string) {
       value: (el) => Number($(el).text()),
     },
     character: `[class$="icon--radical"]`,
-    primary_meaning: `[class$="__meanings-items"]:eq(0)`,
-    alternative_meanings: `[class$="__meanings-items"]:eq(1)`,
+    name: `[class$="meanings-items"]:eq(0)`,
     mnemonic: [
       {
         selector: '.subject-section__text',
         value: (el) => $(el).html(),
       },
     ],
-  });
-}
-
-export async function scrapeRadicalFoundInKanji(slug: string) {
-  let $ = await fromURL(`https://www.wanikani.com/radicals/${slug}`);
-  return $.extract({
-    radical_name: `.page-header__title-text`,
-    found_in_kanji: ['.subject-character__characters'],
+    foundInKanji: ['.subject-character__characters'],
   });
 }
 

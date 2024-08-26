@@ -8,98 +8,86 @@ export async function scrapeVocabulary(slug: string) {
       value: (el) => Number($(el).text()),
     },
     character: `[class$="icon--vocabulary"]`,
-    primary_meaning: `.subject-section__meanings-items:first`,
-    alternative_meanings: {
+    primaryMeaning: `.subject-section__meanings-items:first`,
+    alternativeMeanings: {
       selector: `.subject-section__meanings:eq(1)`,
       value: (el) => {
         let title = $(el).find('.subject-section__meanings-title').text();
-        let item = $(el).find('.subject-section__meanings-items').text();
+        let item = $(el)
+          .find('.subject-section__meanings-items')
+          .text()
+          .split(', ');
         return title.includes('Alternative') ? item : undefined;
       },
     },
-    word_types: {
+    wordTypes: {
       selector: `.subject-section__meanings:last`,
       value: (el) => {
         let title = $(el).find('.subject-section__meanings-title').text();
-        let item = $(el).find('.subject-section__meanings-items').text();
+        let item = $(el)
+          .find('.subject-section__meanings-items')
+          .text()
+          .split(', ');
         return title.includes('Word') ? item : undefined;
       },
     },
-    meaning_explanation: [
+    meaningExplanation: [
       {
         selector: `#section-meaning .subject-section__text`,
         value: (el) => $(el).html(),
       },
     ],
-    reading_explanation: [
+    readingExplanation: [
       {
         selector: `#section-reading .subject-section__text`,
         value: (el) => $(el).html(),
       },
     ],
-  });
-}
-
-export async function scrapeVocabularyReadings(slug: string) {
-  let $ = await fromURL(`https://www.wanikani.com/vocabulary/${slug}`);
-  return $.extract({
-    character: `[class$="icon--vocabulary"]`,
-    reading_with_audios: [
-      {
-        selector: `.reading-with-audio`,
-        value: (el) => {
-          return $(el).extract({
-            reading: `[lang="ja"]`,
-            audios: [
-              {
-                selector: `li`,
-                value: {
-                  source: {
-                    selector: `source`,
-                    value: (el) => $(el).attr('src'),
-                  },
-                  actor_name: `.reading-with-audio__voice-actor-name`,
-                },
-              },
-            ],
-          });
-        },
-      },
-    ],
-  });
-}
-
-export async function scrapeContextSentences(slug: string) {
-  let $ = await fromURL(`https://www.wanikani.com/vocabulary/${slug}`);
-  return $.extract({
-    character: `[class$="icon--vocabulary"]`,
-    sentences: [
+    contextSentences: [
       {
         selector: `#section-context .subject-section__text`,
         value: (el) => {
           return $(el).extract({
-            jp_sentence: `p:first`,
-            en_sentence: `p:last`,
+            jaSentence: `p:first`,
+            enSentence: `p:last`,
           });
         },
       },
     ],
-  });
-}
-
-export async function scrapePatternsOfUse(slug: string) {
-  let $ = await fromURL(`https://www.wanikani.com/vocabulary/${slug}`);
-  return $.extract({
-    character: `[class$="icon--vocabulary"]`,
-    patterns_of_use: [`.subject-collocations__pattern-name`],
-    common_word_combinations: [
+    readings: [
       {
-        selector: `.context-sentences`,
+        selector: `.reading-with-audio__audio-item`,
         value: (el) => {
-          return $(el).extract({
-            jp_sentence: `p:first`,
-            en_sentence: `p:last`,
-          });
+          let readingEl = $(el).closest('.reading-with-audio');
+          return {
+            source: $(el).find('source').attr('src'),
+            actorName: $(el).find(`[class$="voice-actor-name"]`).text(),
+            reading: $(readingEl).find(`[lang="ja"]`).text(),
+          };
+        },
+      },
+    ],
+    commonUsagePatterns: [
+      {
+        selector: `.subject-collocations__pattern-name`,
+        value: (el) => {
+          let targetID = $(el).attr('aria-controls');
+          return {
+            pattern: $(el).text(),
+            sentences: $(`#${targetID}`).extract({
+              sentences: [
+                {
+                  selector: `.context-sentences`,
+                  value: (el) => {
+                    return $(el).extract({
+                      jpSentence: `p:first`,
+                      enSentence: `p:last`,
+                    });
+                  },
+                },
+              ],
+            }).sentences,
+          };
         },
       },
     ],

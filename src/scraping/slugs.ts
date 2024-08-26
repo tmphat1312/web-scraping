@@ -4,13 +4,13 @@ export async function scrapeSlugs(
   level: number,
   type: 'kanji' | 'radicals' | 'vocabulary',
 ) {
-  const $ = await fromURL(`https://www.wanikani.com/level/${level}`);
+  let $ = await fromURL(`https://www.wanikani.com/level/${level}`);
   return $.extract({
-    [type]: [
+    data: [
       {
         selector: `a[href^="https://www.wanikani.com/${type}"]`,
         value: (el) => $(el).attr('href')!.split('/').pop(),
       },
     ],
-  })[type];
+  }).data;
 }

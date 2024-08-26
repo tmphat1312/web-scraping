@@ -6,8 +6,8 @@ import { wait } from '@/utils/wait';
 import ora from 'ora';
 
 (async function populate() {
-  const fromLevel = 31;
-  const toLevel = 60;
+  const fromLevel = 1;
+  const toLevel = 1;
 
   for (let level = fromLevel; level <= toLevel; level++) {
     console.log(`== Level ${level} ==`);

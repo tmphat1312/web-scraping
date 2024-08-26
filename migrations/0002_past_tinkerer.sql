@@ -1,1 +1,0 @@
-ALTER TABLE `vocabulary` ADD `character` text NOT NULL;

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "db:clean": "rimraf ./src/bin/*.sqlite",
+    "db:clean": "rimraf ./bin/*.sqlite ./migrations",
     "db:drop": "drizzle-kit drop",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

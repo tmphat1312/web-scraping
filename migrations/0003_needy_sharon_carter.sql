@@ -1,1 +1,0 @@
-ALTER TABLE `vocabulary_readings` RENAME COLUMN `sources` TO `source_url`;
