@@ -1,5 +1,6 @@
 {
   "extends": "next/core-web-vitals",
+  "plugins": ["drizzle"],
   "rules": {
     "no-unused-vars": "warn"
   }
