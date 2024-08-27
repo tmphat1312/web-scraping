@@ -1,10 +1,23 @@
-import { insertRadicals } from '@/data/mutations';
+import {
+  insertKanjiRadicalCompositions,
+  insertRadicals,
+} from '@/data/mutations';
+import { getKanjiByCharacters } from '@/data/queries';
 import { scrapeRadical } from '@/scraping/radical';
 import { radicalAdapter } from '@/utils/adapters';
 
 import { populate } from './populate';
 
-populate(3, 3, 'radicals', async (slug) => {
+populate(1, 60, 'radicals', async (slug) => {
   let radical = await scrapeRadical(slug);
-  await insertRadicals([radicalAdapter(radical)]);
+  let [insertedRadical] = await insertRadicals([radicalAdapter(radical)]);
+  let kanji = await getKanjiByCharacters(radical.foundInKanji);
+  let radicalCompositions = kanji.map((k) => ({
+    radical_id: insertedRadical.id,
+    kanji_id: k.id,
+  }));
+
+  if (radicalCompositions.length > 0) {
+    await insertKanjiRadicalCompositions(radicalCompositions);
+  }
 });

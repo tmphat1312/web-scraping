@@ -2,15 +2,21 @@ import { db } from './db';
 import {
   commonUsagePatterns,
   kanji,
+  kanjiRadicalCompositions,
   levels,
   radicals,
+  vocaKanjiCompositions,
   vocabulary,
 } from './schemas';
 
 export type InsertLevel = typeof levels.$inferInsert;
 export type InsertRadical = typeof radicals.$inferInsert;
 export type InsertKanji = typeof kanji.$inferInsert;
+export type InsertKanjiRadicalComposition =
+  typeof kanjiRadicalCompositions.$inferInsert;
 export type InsertVoca = typeof vocabulary.$inferInsert;
+export type InsertVocaKanjiComposition =
+  typeof vocaKanjiCompositions.$inferInsert;
 export type InsertCommonUsagePattern = typeof commonUsagePatterns.$inferInsert;
 
 export async function insertLevels(data: InsertLevel[]) {
@@ -40,4 +46,16 @@ export async function insertCommonUsagePatterns(
   data: InsertCommonUsagePattern[],
 ) {
   await db.insert(commonUsagePatterns).values(data);
+}
+
+export async function insertVocaKanjiCompositions(
+  data: InsertVocaKanjiComposition[],
+) {
+  await db.insert(vocaKanjiCompositions).values(data);
+}
+
+export async function insertKanjiRadicalCompositions(
+  data: InsertKanjiRadicalComposition[],
+) {
+  await db.insert(kanjiRadicalCompositions).values(data);
 }

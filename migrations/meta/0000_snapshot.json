@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "d9c2ce4e-7405-4332-babe-24b9c5d30c5e",
+  "id": "fdc8555b-ee9b-4b90-b665-60c9cf59657e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "common_usage_patterns": {
@@ -53,6 +53,165 @@
         }
       },
       "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "kanji": {
+      "name": "kanji",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "level": {
+          "name": "level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "character": {
+          "name": "character",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "primary_meaning": {
+          "name": "primary_meaning",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "alternative_meanings": {
+          "name": "alternative_meanings",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "meaning_mnemonic": {
+          "name": "meaning_mnemonic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "meaning_hints": {
+          "name": "meaning_hints",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kunyomi_reading": {
+          "name": "kunyomi_reading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "onyomi_reading": {
+          "name": "onyomi_reading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "nanori_reading": {
+          "name": "nanori_reading",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "reading_mnemonic": {
+          "name": "reading_mnemonic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reading_hints": {
+          "name": "reading_hints",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "kanji_character_unique": {
+          "name": "kanji_character_unique",
+          "columns": [
+            "character"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "kanji_radical_compositions": {
+      "name": "kanji_radical_compositions",
+      "columns": {
+        "radical_id": {
+          "name": "radical_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "kanji_id": {
+          "name": "kanji_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "kanji_radical_compositions_radical_id_radicals_id_fk": {
+          "name": "kanji_radical_compositions_radical_id_radicals_id_fk",
+          "tableFrom": "kanji_radical_compositions",
+          "tableTo": "radicals",
+          "columnsFrom": [
+            "radical_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "kanji_radical_compositions_kanji_id_kanji_id_fk": {
+          "name": "kanji_radical_compositions_kanji_id_kanji_id_fk",
+          "tableFrom": "kanji_radical_compositions",
+          "tableTo": "kanji",
+          "columnsFrom": [
+            "kanji_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "kanji_radical_compositions_radical_id_kanji_id_pk": {
+          "columns": [
+            "radical_id",
+            "kanji_id"
+          ],
+          "name": "kanji_radical_compositions_radical_id_kanji_id_pk"
+        }
+      },
       "uniqueConstraints": {}
     },
     "levels": {
@@ -126,6 +285,108 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "radicals": {
+      "name": "radicals",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "level": {
+          "name": "level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "character": {
+          "name": "character",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mnemonic": {
+          "name": "mnemonic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "voca_kanji_compositions": {
+      "name": "voca_kanji_compositions",
+      "columns": {
+        "kanji_id": {
+          "name": "kanji_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "voca_id": {
+          "name": "voca_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "voca_kanji_compositions_kanji_id_kanji_id_fk": {
+          "name": "voca_kanji_compositions_kanji_id_kanji_id_fk",
+          "tableFrom": "voca_kanji_compositions",
+          "tableTo": "kanji",
+          "columnsFrom": [
+            "kanji_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "voca_kanji_compositions_voca_id_vocabulary_id_fk": {
+          "name": "voca_kanji_compositions_voca_id_vocabulary_id_fk",
+          "tableFrom": "voca_kanji_compositions",
+          "tableTo": "vocabulary",
+          "columnsFrom": [
+            "voca_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "voca_kanji_compositions_kanji_id_voca_id_pk": {
+          "columns": [
+            "kanji_id",
+            "voca_id"
+          ],
+          "name": "voca_kanji_compositions_kanji_id_voca_id_pk"
+        }
+      },
       "uniqueConstraints": {}
     },
     "vocabulary": {

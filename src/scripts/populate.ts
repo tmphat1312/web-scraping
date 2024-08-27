@@ -18,7 +18,7 @@ export async function populate(
       try {
         await fn(slug);
       } catch (error) {
-        spinner.fail(`Failed to populate ${slug}`);
+        spinner.fail(`Failed to populate ${decodeURIComponent(slug)}`);
         console.error(error);
       } finally {
         await wait(200);

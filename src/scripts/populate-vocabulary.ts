@@ -7,7 +7,7 @@ import {
 
 import { populate } from './populate';
 
-populate(2, 3, 'vocabulary', async (slug) => {
+populate(1, 60, 'vocabulary', async (slug) => {
   let scrapedVoca = await scrapeVocabulary(slug);
   let [insertedVoca] = await insertVocabulary([vocabularyAdapter(scrapedVoca)]);
 
