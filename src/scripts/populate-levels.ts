@@ -1,12 +1,7 @@
-import { insertLevels } from '@/data/mutations/levels';
+import { insertLevels } from '@/data/mutations';
 import { scrapeLevels } from '@/scraping/levels';
 import ora from 'ora';
 
-(async function populate() {
-  let spinner = ora();
-
-  spinner.start(`Populating levels...`);
-  let data = await scrapeLevels();
-  await insertLevels(data);
-  spinner.succeed(`Populated levels`);
-})();
+let spinner = ora().start(`Populating levels...`);
+scrapeLevels().then(insertLevels);
+spinner.succeed(`Populated levels`);

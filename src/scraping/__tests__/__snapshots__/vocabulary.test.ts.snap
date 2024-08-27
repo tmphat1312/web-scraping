@@ -1,0 +1,97 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`scrape vocabulary > should be the same vocabulary 1`] = `
+{
+  "alternativeMeanings": [
+    "Day",
+  ],
+  "character": "日",
+  "commonUsagePatterns": [
+    {
+      "pattern": "お日〜",
+      "sentences": [
+        {
+          "enSentence": "the sun",
+          "jpSentence": "お日さま",
+        },
+        {
+          "enSentence": "the sun",
+          "jpSentence": "お日さん",
+        },
+      ],
+    },
+    {
+      "pattern": "〜日",
+      "sentences": [
+        {
+          "enSentence": "this day",
+          "jpSentence": "この日",
+        },
+        {
+          "enSentence": "that day",
+          "jpSentence": "その日",
+        },
+        {
+          "enSentence": "one day, a certain day",
+          "jpSentence": "ある日",
+        },
+      ],
+    },
+    {
+      "pattern": "日が〜",
+      "sentences": [
+        {
+          "enSentence": "to get dark",
+          "jpSentence": "日がくれる",
+        },
+        {
+          "enSentence": "the sun rises",
+          "jpSentence": "日がのぼる",
+        },
+        {
+          "enSentence": "the sun sets",
+          "jpSentence": "日がしずむ",
+        },
+      ],
+    },
+  ],
+  "contextSentences": [
+    {
+      "enSentence": "The sun will come out soon.",
+      "jaSentence": "そろそろ日が出ますよ。",
+    },
+    {
+      "enSentence": "The date the puppy comes is the 3rd.",
+      "jaSentence": "子犬がくる日は三日です。",
+    },
+    {
+      "enSentence": "I lost my passport on the day I came to Japan.",
+      "jaSentence": "日本にきた日にパスポートをなくした。",
+    },
+  ],
+  "level": 2,
+  "meaningExplanation": [
+    "The kanji and the word are exactly the same. That means they share meanings as well. Take note that this word means both "sun" and "day," though. Why? because the sun takes a day to go around and come back!",
+  ],
+  "primaryMeaning": "Sun",
+  "readingExplanation": [
+    "Since this word is made up of a single kanji, it uses the kun'yomi reading. Here's a mnemonic to help you to remember it: ",
+    "What do you feel from the sun? You feel the <mark title="Reading" class="reading-highlight">hea</mark>t (<span lang="ja">ひ</span>).",
+  ],
+  "readings": [
+    {
+      "actorName": "Kyoko",
+      "reading": "ひ",
+      "source": "https://files.wanikani.com/wlzsrjdvwo8hcav432mh97ouxfxk",
+    },
+    {
+      "actorName": "Kenichi",
+      "reading": "ひ",
+      "source": "https://files.wanikani.com/v7zxwkl4apkovzc1xfky6l248i8h",
+    },
+  ],
+  "wordTypes": [
+    "noun",
+  ],
+}
+`;

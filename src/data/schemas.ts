@@ -47,26 +47,15 @@ export const vocabulary = sqliteTable('vocabulary', {
   meaningExplanation: json<string[]>('meaning_explanation').notNull(),
   readingExplanation: json<string[]>('reading_explanation').notNull(),
   readings: json<Reading[]>('readings').notNull(),
-  contextSentences: json<BilingualSentence[]>('context_sentences'),
+  contextSentences: json<BilingualSentence[]>('context_sentences').notNull(),
 });
 
 export const commonUsagePatterns = sqliteTable('common_usage_patterns', {
   id: id(),
-  vocabulary_id: fk('vocabulary_id', vocabulary.id),
+  vocabularyId: fk('vocabulary_id', vocabulary.id),
   pattern: text('pattern').notNull(),
-  sentences: json<BilingualSentence[]>('sentences'),
+  sentences: json<BilingualSentence[]>('sentences').notNull(),
 });
-
-export const visuallySimilarKanji = sqliteTable(
-  'visually_similar_kanji',
-  {
-    kanji_id: fk('kanji_id', kanji.id),
-    similar_kanji_id: fk('similar_kanji_id', kanji.id),
-  },
-  (table) => ({
-    pk: primaryKey({ columns: [table.kanji_id, table.similar_kanji_id] }),
-  }),
-);
 
 export const kanjiRadicalCompositions = sqliteTable(
   'kanji_radical_compositions',
@@ -83,7 +72,7 @@ export const vocaKanjiCompositions = sqliteTable(
   'voca_kanji_compositions',
   {
     kanji_id: fk('kanji_id', kanji.id),
-    voca_id: fk('radical_id', vocabulary.id),
+    voca_id: fk('voca_id', vocabulary.id),
   },
   (table) => ({
     pk: primaryKey({ columns: [table.kanji_id, table.voca_id] }),
@@ -91,8 +80,8 @@ export const vocaKanjiCompositions = sqliteTable(
 );
 
 type BilingualSentence = {
-  enSentence: string;
-  jaSentence: string;
+  enSentence?: string;
+  jaSentence?: string;
 };
 
 type Reading = {

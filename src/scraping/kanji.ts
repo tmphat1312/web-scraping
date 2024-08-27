@@ -8,8 +8,11 @@ export async function scrapeKanji(slug: string) {
       value: (el) => Number($(el).text()),
     },
     character: `[class$="icon--kanji"]`,
-    primaryMeaning: `[class$="__meanings-items"]:eq(0)`,
-    alternativeMeanings: `[class$="__meanings-items"]:eq(1)`,
+    primaryMeaning: `[class$="meanings-items"]:eq(0)`,
+    alternativeMeanings: {
+      selector: `[class$="meanings-items"]:eq(1)`,
+      value: (el) => $(el).text().split(', '),
+    },
     meaningHints: [
       {
         selector: `#section-meaning .subject-hint__text`,
@@ -46,27 +49,16 @@ export async function scrapeKanji(slug: string) {
         value: (el) => $(el).html(),
       },
     ],
-    visuallySimilarKanji: [
-      '#section-similar-subjects .subject-character__characters',
-    ],
     foundInVocabulary: [
       '#section-amalgamations .subject-character__characters',
     ],
   });
 }
 
-export async function scrapeVisuallyKanji(slug: string) {
+export async function scrapeVisuallySimilarKanji(slug: string) {
   let $ = await fromURL(`https://www.wanikani.com/kanji/${slug}`);
   return $.extract({
     kanji: `[class$="icon--kanji"]`,
     similar_kanji: ['#section-similar-subjects .subject-character__characters'],
-  });
-}
-
-export async function scrapeKanjiFoundInVocabulary(slug: string) {
-  let $ = await fromURL(`https://www.wanikani.com/kanji/${slug}`);
-  return $.extract({
-    kanji: `[class$="icon--kanji"]`,
-    vocabulary: ['#section-amalgamations .subject-character__characters'],
   });
 }

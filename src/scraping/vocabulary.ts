@@ -60,8 +60,8 @@ export async function scrapeVocabulary(slug: string) {
         value: (el) => {
           let readingEl = $(el).closest('.reading-with-audio');
           return {
-            source: $(el).find('source').attr('src'),
-            actorName: $(el).find(`[class$="voice-actor-name"]`).text(),
+            source: $(el).find('source').attr('src')!,
+            actor: $(el).find(`[class$="voice-actor-name"]`).text(),
             reading: $(readingEl).find(`[lang="ja"]`).text(),
           };
         },
@@ -80,7 +80,7 @@ export async function scrapeVocabulary(slug: string) {
                   selector: `.context-sentences`,
                   value: (el) => {
                     return $(el).extract({
-                      jpSentence: `p:first`,
+                      jaSentence: `p:first`,
                       enSentence: `p:last`,
                     });
                   },
