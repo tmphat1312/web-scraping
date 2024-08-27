@@ -10,8 +10,8 @@ populate(1, 60, 'kanji', async (slug) => {
   let [insertedKanji] = await insertKanji([kanjiAdapter(kanji)]);
   let vocabulary = await getVocabularyByCharacters(kanji.foundInVocabulary);
   let kanjiCompositions = vocabulary.map((voca) => ({
-    kanji_id: insertedKanji.id,
-    voca_id: voca.id,
+    kanjiId: insertedKanji.id,
+    vocaId: voca.id,
   }));
 
   if (kanjiCompositions.length > 0) {

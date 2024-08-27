@@ -60,22 +60,33 @@ export const commonUsagePatterns = sqliteTable('common_usage_patterns', {
 export const kanjiRadicalCompositions = sqliteTable(
   'kanji_radical_compositions',
   {
-    radical_id: fk('radical_id', radicals.id),
-    kanji_id: fk('kanji_id', kanji.id),
+    radicalId: fk('radical_id', radicals.id),
+    kanjiId: fk('kanji_id', kanji.id),
   },
   (table) => ({
-    pk: primaryKey({ columns: [table.radical_id, table.kanji_id] }),
+    pk: primaryKey({ columns: [table.radicalId, table.kanjiId] }),
   }),
 );
 
 export const vocaKanjiCompositions = sqliteTable(
   'voca_kanji_compositions',
   {
-    kanji_id: fk('kanji_id', kanji.id),
-    voca_id: fk('voca_id', vocabulary.id),
+    kanjiId: fk('kanji_id', kanji.id),
+    vocaId: fk('voca_id', vocabulary.id),
   },
   (table) => ({
-    pk: primaryKey({ columns: [table.kanji_id, table.voca_id] }),
+    pk: primaryKey({ columns: [table.kanjiId, table.vocaId] }),
+  }),
+);
+
+export const visuallySimilarKanji = sqliteTable(
+  'visually_similar_kanji',
+  {
+    kanjiId: fk('kanji_id', kanji.id),
+    similarKanjiId: fk('similar_kanji_id', kanji.id),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.kanjiId, table.similarKanjiId] }),
   }),
 );
 

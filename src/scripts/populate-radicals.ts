@@ -13,8 +13,8 @@ populate(1, 60, 'radicals', async (slug) => {
   let [insertedRadical] = await insertRadicals([radicalAdapter(radical)]);
   let kanji = await getKanjiByCharacters(radical.foundInKanji);
   let radicalCompositions = kanji.map((k) => ({
-    radical_id: insertedRadical.id,
-    kanji_id: k.id,
+    radicalId: insertedRadical.id,
+    kanjiId: k.id,
   }));
 
   if (radicalCompositions.length > 0) {
