@@ -5,6 +5,7 @@ import {
   kanjiRadicalCompositions,
   levels,
   radicals,
+  visuallySimilarKanji,
   vocaKanjiCompositions,
   vocabulary,
 } from './schemas';
@@ -18,6 +19,8 @@ export type InsertVoca = typeof vocabulary.$inferInsert;
 export type InsertVocaKanjiComposition =
   typeof vocaKanjiCompositions.$inferInsert;
 export type InsertCommonUsagePattern = typeof commonUsagePatterns.$inferInsert;
+export type InsertVisuallySimilarKanji =
+  typeof visuallySimilarKanji.$inferInsert;
 
 export async function insertLevels(data: InsertLevel[]) {
   if (data.length === 0) return;
@@ -58,4 +61,10 @@ export async function insertKanjiRadicalCompositions(
   data: InsertKanjiRadicalComposition[],
 ) {
   await db.insert(kanjiRadicalCompositions).values(data);
+}
+
+export async function insertVisuallySimilarKanji(
+  data: InsertVisuallySimilarKanji[],
+) {
+  await db.insert(visuallySimilarKanji).values(data);
 }

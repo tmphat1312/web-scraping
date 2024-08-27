@@ -8,6 +8,13 @@
       "when": 1724746173329,
       "tag": "0000_naive_nextwave",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1724758442817,
+      "tag": "0001_sleepy_silver_sable",
+      "breakpoints": true
     }
   ]
 }
